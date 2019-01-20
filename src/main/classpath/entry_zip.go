@@ -36,7 +36,6 @@ func (self *ZipEntry) readClass(className string) ([]byte, Entry, error) {
 	if classFile == nil {
 		return nil, self, errors.New("class not found: " + className)
 	}
-
 	data, err := readClass(classFile)
 	return data, self, err
 }
