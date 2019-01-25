@@ -13,6 +13,7 @@ const (
 	CONSTANT_DOUBLE = 6
 	CONSTANT_NAME_TYPE = 12
 	CONSTANT_UTF8 = 1
+	// TODO 还有三种
 	CONSTANT_METHOD_HANDLE = 15
 	CONSTANT_METHOD_TYPE = 16
 	CONSTANT_INVOKE_DYNAMIC = 18
@@ -24,7 +25,10 @@ type ConstantInfo interface {
 }
 
 func readConstantInfo(reader *ClassReader, cp ConstantPool) ConstantInfo {
-
+	tag := reader.readUint8()
+	c := newConstantInfo(tag, cp)
+	c.readInfo(reader)
+	return c
 }
 
 func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {

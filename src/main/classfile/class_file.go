@@ -17,6 +17,8 @@ type ClassFile struct {
 	superClass uint16
 	// 接口索引表
 	interfaces []uint16
+	fields []*MemberInfo
+	methods []*MemberInfo
 }
 
 /*
