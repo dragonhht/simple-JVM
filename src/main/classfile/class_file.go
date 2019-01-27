@@ -1,5 +1,7 @@
 package classfile
 
+import "fmt"
+
 type ClassFile struct {
 	// 魔数
 	//magic uint32
@@ -19,21 +21,60 @@ type ClassFile struct {
 	interfaces []uint16
 	fields []*MemberInfo
 	methods []*MemberInfo
+	attributes []AttributeInfo
 }
 
 /*
 	将字节解析为ClassFile结构体
  */
-func Parse(classData []byte) (*ClassFile, error) {
+func Parse(classData []byte) (cf *ClassFile, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			var ok bool
+			err, ok = r.(error)
+			if !ok {
+				err = fmt.Errorf("%v", r)
+			}
+		}
+	}()
 
+	cr := &ClassReader{classData}
+	cf = &ClassFile{}
+	cf.read(cr)
+	return
 }
 
 func (self *ClassFile) read(reader *ClassReader) {
-
+	self.readAndCheckMagic(reader)
+	self.readAndCheckVersion(reader)
+	self.constantPool = readConstantPool(reader)
+	self.accessFlags = reader.readUint16()
+	self.thisClass = reader.readUint16()
+	self.superClass = reader.readUint16()
+	self.interfaces = reader.readUint16s()
+	self.fields = readMembers(reader, self.constantPool)
+	self.methods = readMembers(reader, self.constantPool)
+	self.attributes = readAttributes(reader, self.constantPool)
 }
 
 func (self *ClassFile) ClassName() string {
-	// TODO 从常量池中获取类名
+	return self.constantPool.getClassName(self.thisClass)
+}
+
+func (self *ClassFile) SuperClassName() string {
+	if self.superClass > 0 {
+		return self.constantPool.getClassName(self.superClass)
+	}
+	// java.lang.Object没有父类
+	return ""
+}
+
+func (self *ClassFile) InterfaceNames() []string {
+	interfaceNames := make([]string, len(self.interfaces))
+	for i, cpIndex := range self.interfaces  {
+		interfaceNames[i] = self.constantPool.getClassName(cpIndex)
+	}
+	return interfaceNames
 }
 
 /*
@@ -87,3 +128,18 @@ func (self *ClassFile) MinorVersion() uint16 {
 	return self.minorVersion
 }
 
+func (self *ClassFile) ConstantPool() ConstantPool {
+	return self.constantPool
+}
+
+func (self *ClassFile) Attributes() []AttributeInfo {
+	return self.attributes
+}
+
+func (self *ClassFile) Methods() []*MemberInfo {
+	return self.methods
+}
+
+func (self *ClassFile) Fields() []*MemberInfo {
+	return self.fields
+}
