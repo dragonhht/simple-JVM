@@ -6,6 +6,18 @@ type Frame struct {
 	operandStack *OperandStack
 }
 
+func (self Frame) LocalVars() LocalVars {
+	return self.localVars
+}
+
+func (self Frame) Lower() *Frame {
+	return self.lower
+}
+
+func (self Frame) OperandStack() *OperandStack {
+	return f.operandStack
+}
+
 func newFrame(maxLocals, maxStack uint) *Frame {
 	return &Frame{
 		localVars: newLocalVars(maxLocals),
