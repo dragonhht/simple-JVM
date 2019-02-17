@@ -15,7 +15,7 @@ func (self Frame) Lower() *Frame {
 }
 
 func (self Frame) OperandStack() *OperandStack {
-	return f.operandStack
+	return self.operandStack
 }
 
 func newFrame(maxLocals, maxStack uint) *Frame {
