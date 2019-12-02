@@ -13,7 +13,12 @@ import (
 type CompositeEntry []Entry
 
 func newCompositeEntry(pathList string) CompositeEntry {
-	return CompositeEntry{}
+	var compositeEntry []Entry
+	for _, path := range strings.Split(pathList, pathListSeparator){
+		entry := newEntry(path)
+		compositeEntry = append(compositeEntry, entry)
+	}
+	return compositeEntry
 }
 
 func (self CompositeEntry) readClass(className string) ([]byte, Entry, error) {
