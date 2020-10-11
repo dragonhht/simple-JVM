@@ -14,7 +14,7 @@ func readConstantPool(reader *ClassReader) ConstantPool {
 		switch cp[i].(type) {
 		case *ConstantLongInfo, *ConstantDoubleInfo:
 			// ConstantLongInfo 和 ConstantDoubleInfo各占两位置
-			i++;
+			i++
 		}
 	}
 	return cp
