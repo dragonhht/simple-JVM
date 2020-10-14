@@ -7,7 +7,7 @@ type LocalVars []Slot
 /*
 	创建LocalVars实例
  */
-func newLocalVars(maxLocals uint) LocalVars {
+func newLocalVars(maxLocals uint16) LocalVars {
 	if maxLocals > 0 {
 		return make([]Slot, maxLocals)
 	}
