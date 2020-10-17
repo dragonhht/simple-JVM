@@ -41,7 +41,79 @@ func link(class *Class) {
 }
 
 func prepare(class *Class) {
-	// TODO 准备阶段处理
+	calcInstanceFieldSlotIds(class)
+	calcStaticFieldSlotIds(class)
+	allocAndInitStaticVars(class)
+}
+
+func allocAndInitStaticVars(class *Class) {
+	class.staticVars = newSlots(class.staticSlotCount)
+	for _, field := range class.fields {
+		if field.IsStatic() && field.IsFinal() {
+			initStaticFinalVar(class, field)
+		}
+	}
+}
+
+func initStaticFinalVar(class *Class, field *Field) {
+	vars := class.staticVars
+	cp := class.constantPool
+	cpIndex := field.ConstValueIndex()
+	slotId := field.SlotId()
+
+	if cpIndex > 0 {
+		switch field.Descriptor() {
+		case "Z", "B", "C", "S", "I":
+			val := cp.GetConstant(cpIndex).(int32)
+			vars.SetInt(slotId, val)
+		case "J":
+			val := cp.GetConstant(cpIndex).(int64)
+			vars.SetLong(slotId, val)
+		case "F":
+			val := cp.GetConstant(cpIndex).(float32)
+			vars.SetFloat(slotId, val)
+		case "D":
+			val := cp.GetConstant(cpIndex).(float64)
+			vars.SetDouble(slotId, val)
+		case "Ljava/lang/String":
+			// TODO 待实现
+		}
+	}
+}
+
+func calcStaticFieldSlotIds(class *Class) {
+	slotId := uint(0)
+	for _, field := range class.fields {
+		if field.IsStatic() {
+			field.slotId = slotId
+			slotId++
+			if field.isLongOrDouble() {
+				slotId++
+			}
+		}
+	}
+	class.staticSlotCount++
+}
+
+/*
+	计算实例字段个数及进行编号
+ */
+func calcInstanceFieldSlotIds(class *Class) {
+	slotId := uint(0)
+	if class.superClass != nil {
+		slotId = class.superClass.instanceSlotCount
+	}
+
+	for _, field := range class.fields {
+		if !field.IsStatic() {
+			field.slotId = slotId
+			slotId++
+			if field.isLongOrDouble() {
+				slotId++
+			}
+		}
+	}
+	class.instanceSlotCount = slotId
 }
 
 func verify(class *Class) {
