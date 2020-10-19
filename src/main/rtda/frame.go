@@ -1,15 +1,22 @@
 package rtda
 
+import "main/rtda/heap"
+
 type Frame struct {
 	lower *Frame
 	localVars LocalVars
 	operandStack *OperandStack
 	thread *Thread
 	nextPC int
+	method *heap.Method
 }
 
 func (self *Frame) LocalVars() LocalVars {
 	return self.localVars
+}
+
+func (self *Frame) Method() *heap.Method {
+	return self.method
 }
 
 func (self *Frame) Lower() *Frame {

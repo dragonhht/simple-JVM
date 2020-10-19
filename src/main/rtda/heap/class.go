@@ -1,6 +1,9 @@
 package heap
 
-import "main/classfile"
+import (
+	"main/classfile"
+	"strings"
+)
 
 type Class struct {
 	accessFlags uint16
@@ -28,6 +31,14 @@ func newClass(cf *classfile.ClassFile) *Class {
 	class.fields = newFields(class, cf.Fields())
 	class.methods = newMethods(class, cf.Methods())
 	return class
+}
+
+func (self *Class) StaticVars() Slots {
+	return self.staticVars
+}
+
+func (self *Class) ConstantPool() *ConstantPool {
+	return self.constantPool
 }
 
 func (self *Class) IsPublic() bool {
@@ -60,4 +71,35 @@ func (self *Class) IsAnnotation() bool {
 
 func (self *Class) IsEnum() bool {
 	return 0 != self.accessFlags & ACC_ENUM
+}
+
+func (self *Class) isAccessibleTo(class *Class) bool {
+	return self.IsPublic() || self.getPackageName() == class.getPackageName()
+}
+
+func (self *Class) getPackageName() string {
+	if i := strings.LastIndex(self.name, "/"); i >= 0 {
+		return self.name[:i]
+	}
+	return ""
+}
+
+func (self *Class) isSubClassOf(class *Class) bool {
+	for k := class.superClass; k != nil; k = k.superClass {
+		if k == class {
+			return true
+		}
+	}
+	return false
+}
+
+func (self *Class) NewObject() *Object {
+	return newObject(self)
+}
+
+func newObject(class *Class) *Object {
+	return &Object{
+		class:  class,
+		fields: newSlots(class.instanceSlotCount),
+	}
 }

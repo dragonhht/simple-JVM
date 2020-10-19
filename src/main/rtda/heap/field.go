@@ -19,7 +19,7 @@ func newFields(class *Class, cfFields []*classfile.MemberInfo) []*Field {
 	return fields
 }
 
-func (self *Field) copyAttributes(cfField *classfile.MemberInfo) uint {
+func (self *Field) copyAttributes(cfField *classfile.MemberInfo) {
 	if valAttr := cfField.ConstantValueAttribute(); valAttr != nil {
 		self.constValueIndex = uint(valAttr.ConstantValueIndex())
 	}
@@ -31,18 +31,6 @@ func (self *Field) SlotId() uint {
 
 func (self *Field) ConstValueIndex() uint {
 	return self.constValueIndex
-}
-
-func (self *Field) IsPublic() bool {
-	return 0 != self.accessFlags & ACC_PUBLIC
-}
-
-func (self *Field) IsPrivate() bool {
-	return 0 != self.accessFlags & ACC_PRIVATE
-}
-
-func (self *Field) IsProtected() bool {
-	return 0 != self.accessFlags & ACC_PROTECTED
 }
 
 func (self *Field) IsStatic() bool {
