@@ -39,10 +39,11 @@ func (self *Frame) OperandStack() *OperandStack {
 	return self.operandStack
 }
 
-func newFrame(thread *Thread, maxLocals, maxStack uint16) *Frame {
+func newFrame(thread *Thread, method *heap.Method) *Frame {
 	return &Frame{
 		thread: thread,
-		localVars: newLocalVars(maxLocals),
-		operandStack: newOperandStack(maxStack),
+		method: method,
+		localVars: newLocalVars(method.MaxLocals()),
+		operandStack: newOperandStack(method.MaxStack()),
 	}
 }

@@ -2,28 +2,24 @@ package main
 
 import (
 	"fmt"
-	"main/classfile"
 	"main/instructuins"
 	"main/instructuins/base"
 	"main/rtda"
+	"main/rtda/heap"
 )
 
 /*
 	简单的解释器
  */
 
-func interpret(methodInfo *classfile.MemberInfo) {
-	codeArr := methodInfo.CodeAttribute()
-	maxLocals := codeArr.MaxLoacls()
-	maxStack := codeArr.MaxStack()
-	byteCode := codeArr.Code()
+func interpret(method *heap.Method) {
 
 	thread := rtda.NewThread()
-	frame := thread.NewFrame(maxLocals, maxStack)
+	frame := thread.NewFrame(method)
 	thread.PushFrame(frame)
 
 	defer catchErr(frame)
-	loop(thread, byteCode)
+	loop(thread, method.Code())
 }
 
 func catchErr(frame *rtda.Frame) {

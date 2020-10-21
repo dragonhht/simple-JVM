@@ -84,17 +84,21 @@ func (self *Class) getPackageName() string {
 	return ""
 }
 
-func (self *Class) isSubClassOf(class *Class) bool {
-	for k := class.superClass; k != nil; k = k.superClass {
-		if k == class {
-			return true
-		}
-	}
-	return false
-}
-
 func (self *Class) NewObject() *Object {
 	return newObject(self)
+}
+
+func (self *Class) GetMainMethod() *Method {
+	return self.getStaticMethod("main", "([Ljava/lang/String;)V")
+}
+
+func (self *Class) getStaticMethod(name string, descriptor string) *Method {
+	for _, m := range self.methods {
+		if m.IsStatic() && m.Name() == name && m.Descriptor() == descriptor {
+			return m
+		}
+	}
+	return nil
 }
 
 func newObject(class *Class) *Object {
