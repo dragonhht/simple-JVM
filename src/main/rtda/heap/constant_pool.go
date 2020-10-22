@@ -17,7 +17,7 @@ type ConstantPool struct {
 func newConstantPool(class *Class, cfCp classfile.ConstantPool) *ConstantPool {
 	cpCount := len(cfCp)
 	consts := make([]Constant, cpCount)
-	rtCp := &ConstantPool{class:class}
+	rtCp := &ConstantPool{class, consts}
 
 	for i := 1; i < cpCount; i++ {
 		cpInfo := cfCp[i]

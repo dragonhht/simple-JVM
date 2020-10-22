@@ -1,6 +1,8 @@
 package heap
 
-import "math"
+import (
+	"math"
+)
 
 type Slot struct {
 	num int32
