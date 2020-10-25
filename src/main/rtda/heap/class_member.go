@@ -45,7 +45,7 @@ func (self *ClassMember) isAccessibleTo(class *Class) bool {
 	}
 	c := self.class
 	if self.IsProtected() {
-		return class == c || class.isSubClassOf(c) ||
+		return class == c || class.IsSubClassOf(c) ||
 			c.getPackageName() == class.getPackageName()
 	}
 	if !self.IsPrivate() {

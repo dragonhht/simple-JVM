@@ -17,5 +17,5 @@ func (self *Object) Class() *Class {
 }
 
 func (self *Object) IsInstanceOf(class *Class) bool {
-	return class.isAssignableFrom(self.class)
+	return class.IsAssignableFrom(self.class)
 }
