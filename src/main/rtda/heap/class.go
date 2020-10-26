@@ -37,6 +37,10 @@ func (self *Class) StaticVars() Slots {
 	return self.staticVars
 }
 
+func (self *Class) SuperClass() *Class {
+	return self.superClass
+}
+
 func (self *Class) ConstantPool() *ConstantPool {
 	return self.constantPool
 }
@@ -74,10 +78,10 @@ func (self *Class) IsEnum() bool {
 }
 
 func (self *Class) isAccessibleTo(class *Class) bool {
-	return self.IsPublic() || self.getPackageName() == class.getPackageName()
+	return self.IsPublic() || self.GetPackageName() == class.GetPackageName()
 }
 
-func (self *Class) getPackageName() string {
+func (self *Class) GetPackageName() string {
 	if i := strings.LastIndex(self.name, "/"); i >= 0 {
 		return self.name[:i]
 	}

@@ -40,3 +40,7 @@ func (self *Class) IsSubInterfaceOf(class *Class) bool {
 	}
 	return false
 }
+
+func (self *Class) IsSuperClassOf(other *Class) bool {
+	return other.IsSubClassOf(self)
+}
