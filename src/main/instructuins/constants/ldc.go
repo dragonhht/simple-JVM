@@ -33,7 +33,7 @@ func _ldc(frame *rtda.Frame, index uint) {
 }
 
 type LDC_W struct {
-	base.Index8Instruction
+	base.Index16Instruction
 }
 
 func (self *LDC_W) Execute(frame *rtda.Frame) {
@@ -41,7 +41,7 @@ func (self *LDC_W) Execute(frame *rtda.Frame) {
 }
 
 type LDC2_W struct {
-	base.Index8Instruction
+	base.Index16Instruction
 }
 
 func (self *LDC2_W) Execute(frame *rtda.Frame) {

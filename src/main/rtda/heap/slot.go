@@ -13,7 +13,7 @@ type Slots []Slot
 
 func newSlots(slotCount uint) Slots {
 	if slotCount > 0 {
-		return make([]Slot, slotCount)
+		return make([]Slot, slotCount + 1)
 	}
 	return nil
 }

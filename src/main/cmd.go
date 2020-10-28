@@ -20,6 +20,8 @@ type Cmd struct {
 	// jre目录
 	XjreOption string
 	args []string
+	verboseClassFlag bool
+	verboseInstFlag bool
 }
 
 /*
