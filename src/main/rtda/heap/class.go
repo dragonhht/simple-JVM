@@ -38,6 +38,10 @@ func (self *Class) InitStarted() bool {
 	return self.initStarted
 }
 
+func (self *Class) Loader() *ClassLoader {
+	return self.loader
+}
+
 func (self *Class) StartInit() {
 	self.initStarted = true
 }
@@ -125,6 +129,6 @@ func (self *Class) GetClinitMethod() *Method {
 func newObject(class *Class) *Object {
 	return &Object{
 		class:  class,
-		fields: newSlots(class.instanceSlotCount),
+		data: newSlots(class.instanceSlotCount),
 	}
 }

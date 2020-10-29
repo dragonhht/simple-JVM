@@ -5,11 +5,11 @@ package heap
  */
 type Object struct {
 	class *Class
-	fields Slots
+	data interface{}
 }
 
 func (self *Object) Fields() Slots {
-	return self.fields
+	return self.data.(Slots)
 }
 
 func (self *Object) Class() *Class {

@@ -24,7 +24,25 @@ func (self *ClassLoader) LoadClass(name string) *Class {
 	if class, ok := self.classMap[name]; ok {
 		return class
 	}
+	if name[0] == '[' {
+		return self.loadArrayClass(name)
+	}
 	return self.loadNonArray(name)
+}
+
+func (self *ClassLoader) loadArrayClass(name string) *Class {
+	class := &Class{
+		accessFlags:       ACC_PUBLIC,
+		name:              name,
+		superClass:        self.LoadClass("java/lang.Object"),
+		interfaces:        []*Class{
+			self.LoadClass("java/lang/Cloneable"),
+			self.LoadClass("java/io/Serializable"),
+		},
+		initStarted:       true,
+	}
+	self.classMap[name] = class
+	return class
 }
 
 func (self *ClassLoader) loadNonArray(name string) *Class {
