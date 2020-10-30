@@ -17,15 +17,15 @@ const (
 	AT_LONG = 11
 )
 
-type New_ARRAY struct {
+type NEW_ARRAY struct {
 	atype uint8
 }
 
-func (self *New_ARRAY) FetchOperands(reader *base.BytecodeReader) {
+func (self *NEW_ARRAY) FetchOperands(reader *base.BytecodeReader) {
 	self.atype = reader.ReadUint8()
 }
 
-func (self *New_ARRAY) Execute(frame *rtda.Frame) {
+func (self *NEW_ARRAY) Execute(frame *rtda.Frame) {
 	stack := frame.OperandStack()
 	count := stack.PopInt()
 	if count < 0 {
