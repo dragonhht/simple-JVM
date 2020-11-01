@@ -137,3 +137,13 @@ func newObject(class *Class) *Object {
 		data: newSlots(class.instanceSlotCount),
 	}
 }
+
+func (self *Class) isJlObject() bool {
+	return self.name == "java/lang/Object"
+}
+func (self *Class) isJlCloneable() bool {
+	return self.name == "java/lang/Cloneable"
+}
+func (self *Class) isJioSerializable() bool {
+	return self.name == "java/io/Serializable"
+}

@@ -5,10 +5,32 @@ func (self *Class) IsAssignableFrom(class *Class) bool {
 	if s == t {
 		return true
 	}
-	if !t.IsInterface() {
-		return s.IsSubClassOf(t)
+	if !s.IsArray() {
+		if !s.IsInterface() {
+			if !t.IsInterface() {
+				return s.IsSubClassOf(t)
+			} else {
+				return s.IsImplements(t)
+			}
+		} else {
+			if !t.IsInterface() {
+				return t.isJlObject()
+			} else {
+				return t.isSuperInterfaceOf(s)
+			}
+		}
 	} else {
-		return s.IsImplements(t)
+		if !t.IsArray() {
+			if !t.IsInterface() {
+				return t.isJlObject()
+			} else {
+				return t.isJlCloneable() || t.isJioSerializable()
+			}
+		} else {
+			sc := s.ComponentClass()
+			tc := t.ComponentClass()
+			return sc == tc || tc.IsAssignableFrom(sc)
+		}
 	}
 }
 
@@ -43,4 +65,8 @@ func (self *Class) IsSubInterfaceOf(class *Class) bool {
 
 func (self *Class) IsSuperClassOf(other *Class) bool {
 	return other.IsSubClassOf(self)
+}
+
+func (self *Class) isSuperInterfaceOf(iface *Class) bool {
+	return iface.IsSubInterfaceOf(self)
 }

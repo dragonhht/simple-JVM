@@ -1,6 +1,7 @@
 package heap
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -13,7 +14,7 @@ type Slots []Slot
 
 func newSlots(slotCount uint) Slots {
 	if slotCount > 0 {
-		return make([]Slot, slotCount + 1)
+		return make([]Slot, slotCount)
 	}
 	return nil
 }
@@ -61,6 +62,7 @@ func (self Slots) GetDouble(index uint) float64 {
 }
 
 func (self Slots) SetRef(index uint, ref *Object) {
+	fmt.Printf("len: %v, index: %v\n", len(self), index)
 	self[index].ref = ref
 }
 
