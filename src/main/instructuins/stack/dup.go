@@ -11,8 +11,8 @@ type DUP struct {
 
 /*
 	复制栈顶单个变量
- */
-func (self *DUP) Execute(frame *rtda.Frame)  {
+*/
+func (self *DUP) Execute(frame *rtda.Frame) {
 	stack := frame.OperandStack()
 	slot := stack.PopSlot()
 	stack.PushSlot(slot)

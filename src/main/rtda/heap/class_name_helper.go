@@ -1,15 +1,15 @@
 package heap
 
-var primitiveTypes = map[string]string {
-	"void": "V",
+var primitiveTypes = map[string]string{
+	"void":    "V",
 	"boolean": "Z",
-	"byte": "B",
-	"short": "S",
-	"int": "I",
-	"long": "J",
-	"char": "C",
-	"float": "F",
-	"double": "D",
+	"byte":    "B",
+	"short":   "S",
+	"int":     "I",
+	"long":    "J",
+	"char":    "C",
+	"float":   "F",
+	"double":  "D",
 }
 
 func getArrayClassName(name string) string {
@@ -39,7 +39,7 @@ func toClassName(descriptor string) string {
 		return descriptor
 	}
 	if descriptor[0] == 'L' {
-		return descriptor[1 : len(descriptor) - 1]
+		return descriptor[1 : len(descriptor)-1]
 	}
 	for className, d := range primitiveTypes {
 		if d == descriptor {

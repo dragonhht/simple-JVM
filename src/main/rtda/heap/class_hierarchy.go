@@ -1,7 +1,7 @@
 package heap
 
 func (self *Class) IsAssignableFrom(class *Class) bool {
-	s ,t := class, self
+	s, t := class, self
 	if s == t {
 		return true
 	}

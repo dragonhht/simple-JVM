@@ -7,7 +7,7 @@ import (
 
 /*
 	float类型变量比较
- */
+*/
 type FCMPG struct {
 	base.NoOperandsInstruction
 }

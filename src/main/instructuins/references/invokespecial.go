@@ -34,7 +34,7 @@ func (self *INVOKE_SPECIAL) Execute(frame *rtda.Frame) {
 	}
 	methodToBeInvoked := resolvedMethod
 	if currentClass.IsSuper() && resolvedClass.IsSuperClassOf(currentClass) &&
-		resolvedMethod.Name() != "<init>"{
+		resolvedMethod.Name() != "<init>" {
 		methodToBeInvoked = heap.LookupMethodInClass(currentClass.SuperClass(),
 			methodRef.Name(), methodRef.Descriptor())
 	}

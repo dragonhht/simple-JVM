@@ -7,16 +7,16 @@ import (
 )
 
 type ClassLoader struct {
-	cp *classpath.Classpath
+	cp          *classpath.Classpath
 	verboseFlag bool
-	classMap map[string]*Class
+	classMap    map[string]*Class
 }
 
 func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader {
 	return &ClassLoader{
-		cp:       cp,
+		cp:          cp,
 		verboseFlag: verboseFlag,
-		classMap: make(map[string]*Class),
+		classMap:    make(map[string]*Class),
 	}
 }
 
@@ -32,14 +32,14 @@ func (self *ClassLoader) LoadClass(name string) *Class {
 
 func (self *ClassLoader) loadArrayClass(name string) *Class {
 	class := &Class{
-		accessFlags:       ACC_PUBLIC,
-		name:              name,
-		superClass:        self.LoadClass("java/lang.Object"),
-		interfaces:        []*Class{
+		accessFlags: ACC_PUBLIC,
+		name:        name,
+		superClass:  self.LoadClass("java/lang/Object"),
+		interfaces: []*Class{
 			self.LoadClass("java/lang/Cloneable"),
 			self.LoadClass("java/io/Serializable"),
 		},
-		initStarted:       true,
+		initStarted: true,
 	}
 	self.classMap[name] = class
 	return class
@@ -98,7 +98,9 @@ func initStaticFinalVar(class *Class, field *Field) {
 			val := cp.GetConstant(cpIndex).(float64)
 			vars.SetDouble(slotId, val)
 		case "Ljava/lang/String":
-			// TODO 待实现
+			goStr := cp.GetConstant(cpIndex).(string)
+			jStr := JString(class.Loader(), goStr)
+			vars.SetRef(slotId, jStr)
 		}
 	}
 }
@@ -114,12 +116,12 @@ func calcStaticFieldSlotIds(class *Class) {
 			}
 		}
 	}
-	class.staticSlotCount++
+	class.staticSlotCount = slotId
 }
 
 /*
 	计算实例字段个数及进行编号
- */
+*/
 func calcInstanceFieldSlotIds(class *Class) {
 	slotId := uint(0)
 	if class.superClass != nil {

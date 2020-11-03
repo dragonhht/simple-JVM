@@ -11,7 +11,7 @@ type ACONST_NULL struct {
 
 /*
 	将null推入操作数栈顶
- */
+*/
 func (self *ACONST_NULL) Execute(frame *rtda.Frame) {
 	frame.OperandStack().PushRef(nil)
 }
@@ -22,7 +22,7 @@ type DCONST_0 struct {
 
 /*
 	将double型的0推入操作数栈
- */
+*/
 func (self *DCONST_0) Execute(frame *rtda.Frame) {
 	frame.OperandStack().PushDouble(0.0)
 }

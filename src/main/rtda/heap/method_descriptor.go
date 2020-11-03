@@ -2,7 +2,7 @@ package heap
 
 type MethodDescriptor struct {
 	parameterTypes []string
-	returnType string
+	returnType     string
 }
 
 func (self *MethodDescriptor) addParameterType(t string) {

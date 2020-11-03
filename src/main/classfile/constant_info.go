@@ -2,20 +2,20 @@ package classfile
 
 // tag常量值
 const (
-	CONSTANT_CLASS = 7
-	CONSTANT_FIELD_REF = 9
-	CONSTANT_METHOD_REF = 10
+	CONSTANT_CLASS                = 7
+	CONSTANT_FIELD_REF            = 9
+	CONSTANT_METHOD_REF           = 10
 	CONSTANT_INTERFACE_METHOD_REF = 11
-	CONSTANT_STRING = 8
-	CONSTANT_INTEGER = 3
-	CONSTANT_FLOAT = 4
-	CONSTANT_LONG = 5
-	CONSTANT_DOUBLE = 6
-	CONSTANT_NAME_TYPE = 12
-	CONSTANT_UTF8 = 1
+	CONSTANT_STRING               = 8
+	CONSTANT_INTEGER              = 3
+	CONSTANT_FLOAT                = 4
+	CONSTANT_LONG                 = 5
+	CONSTANT_DOUBLE               = 6
+	CONSTANT_NAME_TYPE            = 12
+	CONSTANT_UTF8                 = 1
 	// TODO 还有三种
-	CONSTANT_METHOD_HANDLE = 15
-	CONSTANT_METHOD_TYPE = 16
+	CONSTANT_METHOD_HANDLE  = 15
+	CONSTANT_METHOD_TYPE    = 16
 	CONSTANT_INVOKE_DYNAMIC = 18
 )
 
@@ -46,7 +46,7 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 	case CONSTANT_STRING:
 		return &ConstantStringInfo{cp: cp}
 	case CONSTANT_CLASS:
-		return &ConstantClassInfo{cp:cp}
+		return &ConstantClassInfo{cp: cp}
 	case CONSTANT_FIELD_REF:
 		return &ConstantFieldrefInfo{ConstantMemberRefInfo{cp: cp}}
 	case CONSTANT_METHOD_REF:

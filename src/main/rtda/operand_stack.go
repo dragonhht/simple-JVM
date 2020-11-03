@@ -7,9 +7,9 @@ import (
 
 /*
 	操作数栈
- */
+*/
 type OperandStack struct {
-	size uint
+	size  uint
 	slots []Slot
 }
 
@@ -54,7 +54,7 @@ func (self *OperandStack) PopLong() int64 {
 	self.size -= 2
 	low := uint32(self.slots[self.size].num)
 	high := uint32(self.slots[self.size+1].num)
-	return int64(high) << 32 | int64(low)
+	return int64(high)<<32 | int64(low)
 }
 
 func (self *OperandStack) PushDouble(val float64) {
@@ -90,5 +90,5 @@ func (self *OperandStack) PopSlot() Slot {
 }
 
 func (self *OperandStack) GetRefFromTop(n uint) *heap.Object {
-	return self.slots[self.size - 1 - n].ref
+	return self.slots[self.size-1-n].ref
 }

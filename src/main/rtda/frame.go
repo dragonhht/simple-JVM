@@ -3,12 +3,12 @@ package rtda
 import "main/rtda/heap"
 
 type Frame struct {
-	lower *Frame
-	localVars LocalVars
+	lower        *Frame
+	localVars    LocalVars
 	operandStack *OperandStack
-	thread *Thread
-	nextPC int
-	method *heap.Method
+	thread       *Thread
+	nextPC       int
+	method       *heap.Method
 }
 
 func (self *Frame) LocalVars() LocalVars {
@@ -31,7 +31,7 @@ func (self *Frame) NextPC() int {
 	return self.nextPC
 }
 
-func (self *Frame) SetNextPC(pc int)  {
+func (self *Frame) SetNextPC(pc int) {
 	self.nextPC = pc
 }
 
@@ -45,9 +45,9 @@ func (self *Frame) RevertNextPC() {
 
 func newFrame(thread *Thread, method *heap.Method) *Frame {
 	return &Frame{
-		thread: thread,
-		method: method,
-		localVars: newLocalVars(method.MaxLocals()),
+		thread:       thread,
+		method:       method,
+		localVars:    newLocalVars(method.MaxLocals()),
 		operandStack: newOperandStack(method.MaxStack()),
 	}
 }

@@ -5,7 +5,7 @@ import (
 	"main/rtda"
 )
 
-type F2D struct{
+type F2D struct {
 	base.NoOperandsInstruction
 }
 
@@ -16,7 +16,7 @@ func (self *F2D) Execute(frame *rtda.Frame) {
 	stack.PushDouble(d)
 }
 
-type F2I struct{
+type F2I struct {
 	base.NoOperandsInstruction
 }
 
@@ -27,7 +27,7 @@ func (self *F2I) Execute(frame *rtda.Frame) {
 	stack.PushInt(i)
 }
 
-type F2L struct{
+type F2L struct {
 	base.NoOperandsInstruction
 }
 

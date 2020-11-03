@@ -4,7 +4,7 @@ import "main/classfile"
 
 type MemberRef struct {
 	SymRef
-	name string
+	name       string
 	descriptor string
 }
 

@@ -19,14 +19,14 @@ type ClassFile struct {
 	superClass uint16
 	// 接口索引表
 	interfaces []uint16
-	fields []*MemberInfo
-	methods []*MemberInfo
+	fields     []*MemberInfo
+	methods    []*MemberInfo
 	attributes []AttributeInfo
 }
 
 /*
 	将字节解析为ClassFile结构体
- */
+*/
 func Parse(classData []byte) (cf *ClassFile, err error) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -71,7 +71,7 @@ func (self *ClassFile) SuperClassName() string {
 
 func (self *ClassFile) InterfaceNames() []string {
 	interfaceNames := make([]string, len(self.interfaces))
-	for i, cpIndex := range self.interfaces  {
+	for i, cpIndex := range self.interfaces {
 		interfaceNames[i] = self.constantPool.getClassName(cpIndex)
 	}
 	return interfaceNames
@@ -79,7 +79,7 @@ func (self *ClassFile) InterfaceNames() []string {
 
 /*
 	读取并校验Class的魔数
- */
+*/
 func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
 	magic := reader.readUint32()
 	if magic != 0xCAFEBABE {
@@ -89,7 +89,7 @@ func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
 
 /*
 	校验Class版本
- */
+*/
 func (self *ClassFile) readAndCheckVersion(reader *ClassReader) {
 	self.minorVersion = reader.readUint16()
 	self.majorVersion = reader.readUint16()

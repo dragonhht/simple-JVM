@@ -11,7 +11,7 @@ func newFieldRef(cp *ConstantPool, refInfo *classfile.ConstantFieldrefInfo) *Fie
 	ref := &FieldRef{}
 	ref.cp = cp
 	ref.copyMemberRefInfo(&refInfo.ConstantMemberRefInfo)
-	return  ref
+	return ref
 }
 
 func (self *FieldRef) ResolvedField() *Field {
@@ -51,5 +51,3 @@ func lookupField(class *Class, name string, descriptor string) *Field {
 	}
 	return nil
 }
-
-

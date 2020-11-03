@@ -9,7 +9,7 @@ import (
 
 func newWildcardEntry(path string) CompositeEntry {
 	// 去除结尾处的*
-	baseDir := path[:len(path) - 1]
+	baseDir := path[:len(path)-1]
 	var compositeEntry []Entry
 
 	walkFn := func(path string, info os.FileInfo, err error) error {
@@ -30,5 +30,3 @@ func newWildcardEntry(path string) CompositeEntry {
 
 	return compositeEntry
 }
-
-

@@ -8,7 +8,7 @@ import (
 
 /*
 	new指令
- */
+*/
 
 type NEW struct {
 	base.Index16Instruction

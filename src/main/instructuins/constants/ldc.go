@@ -16,7 +16,8 @@ func (self *LDC) Execute(frame *rtda.Frame) {
 
 func _ldc(frame *rtda.Frame, index uint) {
 	stack := frame.OperandStack()
-	cp := frame.Method().Class().ConstantPool()
+	class := frame.Method().Class()
+	cp := class.ConstantPool()
 	c := cp.GetConstant(index)
 	switch c.(type) {
 	case int32:
@@ -24,7 +25,8 @@ func _ldc(frame *rtda.Frame, index uint) {
 	case float32:
 		stack.PushFloat(c.(float32))
 	case string:
-		// TODO 待实现
+		internedStr := heap.JString(class.Loader(), c.(string))
+		stack.PushRef(internedStr)
 	case *heap.ClassRef:
 		// TODO 待实现
 	default:

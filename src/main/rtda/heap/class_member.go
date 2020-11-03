@@ -4,9 +4,9 @@ import "main/classfile"
 
 type ClassMember struct {
 	accessFlags uint16
-	name string
-	descriptor string
-	class *Class
+	name        string
+	descriptor  string
+	class       *Class
 }
 
 func (self *ClassMember) copyMemberInfo(memberInfo *classfile.MemberInfo) {
@@ -24,15 +24,15 @@ func (self *ClassMember) Name() string {
 }
 
 func (self *ClassMember) IsPublic() bool {
-	return 0 != self.accessFlags & ACC_PUBLIC
+	return 0 != self.accessFlags&ACC_PUBLIC
 }
 
 func (self *ClassMember) IsPrivate() bool {
-	return 0 != self.accessFlags & ACC_PRIVATE
+	return 0 != self.accessFlags&ACC_PRIVATE
 }
 
 func (self *ClassMember) IsProtected() bool {
-	return 0 != self.accessFlags & ACC_PROTECTED
+	return 0 != self.accessFlags&ACC_PROTECTED
 }
 
 func (self *ClassMember) Descriptor() string {

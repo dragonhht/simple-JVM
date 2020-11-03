@@ -16,7 +16,7 @@ func startJVM(cmd *Cmd) {
 	mainClass := classLoader.LoadClass(className)
 	mainMethod := mainClass.GetMainMethod()
 	if mainMethod != nil {
-		interpret(mainMethod, cmd.verboseInstFlag)
+		interpret(mainMethod, cmd.verboseInstFlag, cmd.args)
 	} else {
 		fmt.Printf("Main method not found in class %s\n", cmd.class)
 	}
@@ -57,7 +57,7 @@ func printClassInfo(cf *classfile.ClassFile) {
 		fmt.Printf("	%s\n", f.Name())
 	}
 	fmt.Printf("methods count: %v\n", len(cf.Methods()))
-	for _, m := range cf.Methods(){
+	for _, m := range cf.Methods() {
 		fmt.Printf("	%s\n", m.Name())
 	}
 }

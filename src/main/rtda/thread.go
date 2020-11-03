@@ -3,7 +3,7 @@ package rtda
 import "main/rtda/heap"
 
 type Thread struct {
-	pc int
+	pc    int
 	stack *Stack
 }
 

@@ -7,7 +7,7 @@ import (
 )
 
 type MULTI_ANEW_ARRAY struct {
-	index uint16
+	index      uint16
 	dimensions uint8
 }
 

@@ -7,9 +7,9 @@ import (
 
 /*
 	加法指令
- */
+*/
 
-type DADD struct{
+type DADD struct {
 	base.NoOperandsInstruction
 }
 
@@ -21,8 +21,7 @@ func (self *DADD) Execute(frame *rtda.Frame) {
 	stack.PushDouble(result)
 }
 
-
-type FADD struct{
+type FADD struct {
 	base.NoOperandsInstruction
 }
 
@@ -34,8 +33,7 @@ func (self *FADD) Execute(frame *rtda.Frame) {
 	stack.PushFloat(result)
 }
 
-
-type IADD struct{
+type IADD struct {
 	base.NoOperandsInstruction
 }
 
@@ -47,8 +45,7 @@ func (self *IADD) Execute(frame *rtda.Frame) {
 	stack.PushInt(result)
 }
 
-
-type LADD struct{
+type LADD struct {
 	base.NoOperandsInstruction
 }
 

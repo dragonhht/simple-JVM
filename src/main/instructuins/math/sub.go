@@ -7,9 +7,9 @@ import (
 
 /*
 	减法指令
- */
+*/
 
-type DSUB struct{
+type DSUB struct {
 	base.NoOperandsInstruction
 }
 
@@ -21,7 +21,7 @@ func (self *DSUB) Execute(frame *rtda.Frame) {
 	stack.PushDouble(result)
 }
 
-type FSUB struct{
+type FSUB struct {
 	base.NoOperandsInstruction
 }
 
@@ -33,7 +33,7 @@ func (self *FSUB) Execute(frame *rtda.Frame) {
 	stack.PushFloat(result)
 }
 
-type ISUB struct{
+type ISUB struct {
 	base.NoOperandsInstruction
 }
 
@@ -45,7 +45,7 @@ func (self *ISUB) Execute(frame *rtda.Frame) {
 	stack.PushInt(result)
 }
 
-type LSUB struct{
+type LSUB struct {
 	base.NoOperandsInstruction
 }
 

@@ -1,9 +1,9 @@
 package heap
 
 type SymRef struct {
-	cp *ConstantPool
+	cp        *ConstantPool
 	className string
-	class *Class
+	class     *Class
 }
 
 func (self *SymRef) ResolvedClass() *Class {

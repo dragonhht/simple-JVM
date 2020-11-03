@@ -7,7 +7,7 @@ import (
 
 /*
 	比较栈顶两个引用类型的数据
- */
+*/
 
 type IF_ACMPEQ struct {
 	base.BranchInstruction

@@ -24,7 +24,7 @@ func InvokeMethod(invokeFrame *rtda.Frame, method *heap.Method) {
 		if method.Name() == "registerNatives" {
 			thread.PopFrame()
 		} else {
-			panic(fmt.Sprintf("native method: %v.%v%v\n", method.Class().Name() ,method.Name(), method.Descriptor()))
+			panic(fmt.Sprintf("native method: %v.%v%v\n", method.Class().Name(), method.Name(), method.Descriptor()))
 		}
 	}
 }

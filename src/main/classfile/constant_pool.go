@@ -2,7 +2,7 @@ package classfile
 
 /*
 	常量池结构体
- */
+*/
 type ConstantPool []ConstantInfo
 
 func readConstantPool(reader *ClassReader) ConstantPool {

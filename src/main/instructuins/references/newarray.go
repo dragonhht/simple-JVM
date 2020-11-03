@@ -8,13 +8,13 @@ import (
 
 const (
 	AT_BOOLEAN = 4
-	AT_CHAR = 5
-	AT_FLOAT = 6
-	AT_DOUBLE = 7
-	AT_BYTE = 8
-	AT_SHORT = 9
-	AT_INT = 10
-	AT_LONG = 11
+	AT_CHAR    = 5
+	AT_FLOAT   = 6
+	AT_DOUBLE  = 7
+	AT_BYTE    = 8
+	AT_SHORT   = 9
+	AT_INT     = 10
+	AT_LONG    = 11
 )
 
 type NEW_ARRAY struct {

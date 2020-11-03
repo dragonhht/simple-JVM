@@ -10,11 +10,10 @@ import (
 
 /*
 	wide指令可改变其他指令的行为
- */
+*/
 type WIDE struct {
 	modifiedInstruction base.Instruction
 }
-
 
 func (self *WIDE) FetchOperands(reader *base.BytecodeReader) {
 	opcode := reader.ReadUint8()

@@ -7,9 +7,9 @@ import (
 
 /*
 	除法指令
- */
+*/
 
-type DDIV struct{
+type DDIV struct {
 	base.NoOperandsInstruction
 }
 
@@ -21,7 +21,7 @@ func (self *DDIV) Execute(frame *rtda.Frame) {
 	stack.PushDouble(result)
 }
 
-type FDIV struct{
+type FDIV struct {
 	base.NoOperandsInstruction
 }
 
@@ -33,7 +33,7 @@ func (self *FDIV) Execute(frame *rtda.Frame) {
 	stack.PushFloat(result)
 }
 
-type IDIV struct{
+type IDIV struct {
 	base.NoOperandsInstruction
 }
 
@@ -49,7 +49,7 @@ func (self *IDIV) Execute(frame *rtda.Frame) {
 	stack.PushInt(result)
 }
 
-type LDIV struct{
+type LDIV struct {
 	base.NoOperandsInstruction
 }
 

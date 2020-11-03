@@ -7,9 +7,9 @@ import (
 
 /*
 	乘法指令
- */
+*/
 
-type DMUL struct{
+type DMUL struct {
 	base.NoOperandsInstruction
 }
 
@@ -21,7 +21,7 @@ func (self *DMUL) Execute(frame *rtda.Frame) {
 	stack.PushDouble(result)
 }
 
-type FMUL struct{
+type FMUL struct {
 	base.NoOperandsInstruction
 }
 
@@ -33,7 +33,7 @@ func (self *FMUL) Execute(frame *rtda.Frame) {
 	stack.PushFloat(result)
 }
 
-type IMUL struct{
+type IMUL struct {
 	base.NoOperandsInstruction
 }
 
@@ -45,7 +45,7 @@ func (self *IMUL) Execute(frame *rtda.Frame) {
 	stack.PushInt(result)
 }
 
-type LMUL struct{
+type LMUL struct {
 	base.NoOperandsInstruction
 }
 

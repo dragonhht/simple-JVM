@@ -7,7 +7,7 @@ import (
 
 /*
 	byte
- */
+*/
 type BIPUSH struct {
 	val int8
 }
@@ -23,7 +23,7 @@ func (self *BIPUSH) Execute(frame *rtda.Frame) {
 
 /*
 	short
- */
+*/
 type SIPUSH struct {
 	val int16
 }

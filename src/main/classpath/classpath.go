@@ -70,7 +70,7 @@ func getJreDir(jreDir string) string {
 
 /*
 	判断目录是否存在
- */
+*/
 func exists(path string) bool {
 	if _, err := os.Stat(path); err != nil {
 		if os.IsExist(err) {

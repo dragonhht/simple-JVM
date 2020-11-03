@@ -4,14 +4,14 @@ import "main/classfile"
 
 type Method struct {
 	ClassMember
-	maxStack uint16
-	maxLocals uint16
-	code []byte
+	maxStack     uint16
+	maxLocals    uint16
+	code         []byte
 	argSlotCount uint
 }
 
 func newMethods(class *Class, cfMethods []*classfile.MemberInfo) []*Method {
-	methods :=make([]*Method, len(cfMethods))
+	methods := make([]*Method, len(cfMethods))
 	for i, cfMethod := range cfMethods {
 		methods[i] = &Method{}
 		methods[i].class = class
@@ -43,51 +43,51 @@ func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo) {
 }
 
 func (self *Method) IsPublic() bool {
-	return 0 != self.accessFlags & ACC_PUBLIC
+	return 0 != self.accessFlags&ACC_PUBLIC
 }
 
 func (self *Method) IsPrivate() bool {
-	return 0 != self.accessFlags & ACC_PRIVATE
+	return 0 != self.accessFlags&ACC_PRIVATE
 }
 
 func (self *Method) IsProtected() bool {
-	return 0 != self.accessFlags & ACC_PROTECTED
+	return 0 != self.accessFlags&ACC_PROTECTED
 }
 
 func (self *Method) IsStatic() bool {
-	return 0 != self.accessFlags & ACC_STATIC
+	return 0 != self.accessFlags&ACC_STATIC
 }
 
 func (self *Method) IsFinal() bool {
-	return 0 != self.accessFlags & ACC_FINAL
+	return 0 != self.accessFlags&ACC_FINAL
 }
 
 func (self *Method) IsSynchronized() bool {
-	return 0 != self.accessFlags & ACC_SYNCHRONIZED
+	return 0 != self.accessFlags&ACC_SYNCHRONIZED
 }
 
 func (self *Method) IsBridge() bool {
-	return 0 != self.accessFlags & ACC_BRIDGE
+	return 0 != self.accessFlags&ACC_BRIDGE
 }
 
 func (self *Method) IsVarargs() bool {
-	return 0 != self.accessFlags & ACC_VARARGS
+	return 0 != self.accessFlags&ACC_VARARGS
 }
 
 func (self *Method) IsNative() bool {
-	return 0 != self.accessFlags & ACC_NATIVE
+	return 0 != self.accessFlags&ACC_NATIVE
 }
 
 func (self *Method) IsAbstract() bool {
-	return 0 != self.accessFlags & ACC_ABSTRACT
+	return 0 != self.accessFlags&ACC_ABSTRACT
 }
 
 func (self *Method) IsStrict() bool {
-	return 0 != self.accessFlags & ACC_STRICT
+	return 0 != self.accessFlags&ACC_STRICT
 }
 
 func (self *Method) IsSynthetic() bool {
-	return 0 != self.accessFlags & ACC_SYNTHETIC
+	return 0 != self.accessFlags&ACC_SYNTHETIC
 }
 
 func (self *Method) ArgSlotCount() uint {

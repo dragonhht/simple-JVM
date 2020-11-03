@@ -7,7 +7,7 @@ import (
 
 /*
 	==
- */
+*/
 type IFEQ struct {
 	base.BranchInstruction
 }
@@ -21,7 +21,7 @@ func (self *IFEQ) Execute(frame *rtda.Frame) {
 
 /*
 	!=
- */
+*/
 type IFNE struct {
 	base.BranchInstruction
 }
@@ -35,7 +35,7 @@ func (self *IFNE) Execute(frame *rtda.Frame) {
 
 /*
 	<
- */
+*/
 type IFLT struct {
 	base.BranchInstruction
 }
@@ -49,7 +49,7 @@ func (self *IFLT) Execute(frame *rtda.Frame) {
 
 /*
 	<=
- */
+*/
 type IFLE struct {
 	base.BranchInstruction
 }
@@ -63,7 +63,7 @@ func (self *IFLE) Execute(frame *rtda.Frame) {
 
 /*
 	>
- */
+*/
 type IFGT struct {
 	base.BranchInstruction
 }
@@ -77,7 +77,7 @@ func (self *IFGT) Execute(frame *rtda.Frame) {
 
 /*
 	>=
- */
+*/
 type IFGE struct {
 	base.BranchInstruction
 }

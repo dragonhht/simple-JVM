@@ -9,12 +9,12 @@ import (
 
 /*
 	定义结构体
- */
+*/
 type CompositeEntry []Entry
 
 func newCompositeEntry(pathList string) CompositeEntry {
 	var compositeEntry []Entry
-	for _, path := range strings.Split(pathList, pathListSeparator){
+	for _, path := range strings.Split(pathList, pathListSeparator) {
 		entry := newEntry(path)
 		compositeEntry = append(compositeEntry, entry)
 	}

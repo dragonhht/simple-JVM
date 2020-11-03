@@ -1,7 +1,6 @@
 package heap
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -41,13 +40,13 @@ func (self Slots) GetFloat(index uint) float32 {
 func (self Slots) SetLong(index uint, val int64) {
 	// long需要拆分为两个int
 	self[index].num = int32(val)
-	self[index + 1].num = int32(val >> 32)
+	self[index+1].num = int32(val >> 32)
 }
 
 func (self Slots) GetLong(index uint) int64 {
 	low := uint32(self[index].num)
-	high := uint32(self[index + 1].num)
-	return int64(high) << 32 | int64(low)
+	high := uint32(self[index+1].num)
+	return int64(high)<<32 | int64(low)
 }
 
 func (self Slots) SetDouble(index uint, val float64) {
@@ -62,7 +61,6 @@ func (self Slots) GetDouble(index uint) float64 {
 }
 
 func (self Slots) SetRef(index uint, ref *Object) {
-	fmt.Printf("len: %v, index: %v\n", len(self), index)
 	self[index].ref = ref
 }
 

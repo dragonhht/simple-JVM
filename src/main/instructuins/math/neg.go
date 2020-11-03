@@ -7,9 +7,9 @@ import (
 
 /*
 	取反指令
- */
+*/
 
-type DNEG struct{
+type DNEG struct {
 	base.NoOperandsInstruction
 }
 
@@ -19,7 +19,7 @@ func (self *DNEG) Execute(frame *rtda.Frame) {
 	stack.PushDouble(-val)
 }
 
-type FNEG struct{
+type FNEG struct {
 	base.NoOperandsInstruction
 }
 
@@ -29,7 +29,7 @@ func (self *FNEG) Execute(frame *rtda.Frame) {
 	stack.PushFloat(-val)
 }
 
-type INEG struct{
+type INEG struct {
 	base.NoOperandsInstruction
 }
 
@@ -39,7 +39,7 @@ func (self *INEG) Execute(frame *rtda.Frame) {
 	stack.PushInt(-val)
 }
 
-type LNEG struct{
+type LNEG struct {
 	base.NoOperandsInstruction
 }
 

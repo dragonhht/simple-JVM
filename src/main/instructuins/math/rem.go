@@ -2,7 +2,7 @@ package math
 
 /*
 	求余指令
- */
+*/
 
 import (
 	"main/instructuins/base"

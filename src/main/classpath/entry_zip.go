@@ -11,7 +11,7 @@ import (
 
 type ZipEntry struct {
 	absPath string
-	zipRc *zip.ReadCloser
+	zipRc   *zip.ReadCloser
 }
 
 func newZipEntry(path string) *ZipEntry {

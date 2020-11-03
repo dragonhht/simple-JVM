@@ -16,12 +16,12 @@ type Cmd struct {
 	versionFlag bool
 	// -classpath
 	cpOption string
-	class string
+	class    string
 	// jre目录
-	XjreOption string
-	args []string
+	XjreOption       string
+	args             []string
 	verboseClassFlag bool
-	verboseInstFlag bool
+	verboseInstFlag  bool
 }
 
 /*
@@ -37,6 +37,7 @@ func parseCmd() *Cmd {
 	flag.StringVar(&cmd.cpOption, "classPath", "", "classpath")
 	flag.StringVar(&cmd.cpOption, "cp", "", "classpath")
 	flag.StringVar(&cmd.XjreOption, "Xjre", "", "path to jre")
+	flag.BoolVar(&cmd.verboseInstFlag, "verboseInst", false, "")
 	flag.Parse()
 
 	args := flag.Args()
@@ -50,4 +51,3 @@ func parseCmd() *Cmd {
 func printUsage() {
 	fmt.Printf("Usage: %s [-option] class [args...]\n", os.Args[0])
 }
-

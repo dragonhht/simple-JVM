@@ -7,7 +7,7 @@ import (
 
 /*
 	栈顶两元素比较
- */
+*/
 
 type IF_ICMPEQ struct {
 	base.BranchInstruction

@@ -6,11 +6,10 @@ import (
 )
 
 type Constant interface {
-
 }
 
 type ConstantPool struct {
-	class *Class
+	class  *Class
 	consts []Constant
 }
 
@@ -58,7 +57,7 @@ func newConstantPool(class *Class, cfCp classfile.ConstantPool) *ConstantPool {
 
 /*
 	根据索引返回常量
- */
+*/
 func (self *ConstantPool) GetConstant(index uint) Constant {
 	if c := self.consts[index]; c != nil {
 		return c

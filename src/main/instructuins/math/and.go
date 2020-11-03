@@ -2,7 +2,7 @@ package math
 
 /*
 	按位与
- */
+*/
 
 import (
 	"main/instructuins/base"

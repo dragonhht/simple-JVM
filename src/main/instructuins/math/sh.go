@@ -2,7 +2,7 @@ package math
 
 /*
 	位移指令
- */
+*/
 
 import (
 	"main/instructuins/base"
@@ -11,10 +11,10 @@ import (
 
 /*
 	int左位移
- */
- type ISHL struct {
- 	base.NoOperandsInstruction
- }
+*/
+type ISHL struct {
+	base.NoOperandsInstruction
+}
 
 func (self *ISHL) Execute(frame *rtda.Frame) {
 	stack := frame.OperandStack()
@@ -25,9 +25,9 @@ func (self *ISHL) Execute(frame *rtda.Frame) {
 	stack.PushInt(result)
 }
 
- /*
- 	int算术右位移
-  */
+/*
+	int算术右位移
+*/
 type ISHR struct {
 	base.NoOperandsInstruction
 }
@@ -43,7 +43,7 @@ func (self *ISHR) Execute(frame *rtda.Frame) {
 
 /*
 	int逻辑右位移
- */
+*/
 type IUSHR struct {
 	base.NoOperandsInstruction
 }
@@ -59,7 +59,7 @@ func (self *IUSHR) Execute(frame *rtda.Frame) {
 
 /*
 	long左位移
- */
+*/
 type LSHL struct {
 	base.NoOperandsInstruction
 }
@@ -75,7 +75,7 @@ func (self *LSHL) Execute(frame *rtda.Frame) {
 
 /*
 	long算术右位移
- */
+*/
 type LSHR struct {
 	base.NoOperandsInstruction
 }
@@ -91,7 +91,7 @@ func (self *LSHR) Execute(frame *rtda.Frame) {
 
 /*
 	long逻辑右位移
- */
+*/
 type LUSHR struct {
 	base.NoOperandsInstruction
 }

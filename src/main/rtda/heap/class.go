@@ -6,20 +6,20 @@ import (
 )
 
 type Class struct {
-	accessFlags uint16
-	name string
-	superClassName string
-	interfaceNames []string
-	constantPool *ConstantPool
-	fields []*Field
-	methods []*Method
-	loader *ClassLoader
-	superClass *Class
-	interfaces []*Class
+	accessFlags       uint16
+	name              string
+	superClassName    string
+	interfaceNames    []string
+	constantPool      *ConstantPool
+	fields            []*Field
+	methods           []*Method
+	loader            *ClassLoader
+	superClass        *Class
+	interfaces        []*Class
 	instanceSlotCount uint
-	staticSlotCount uint
-	staticVars Slots
-	initStarted bool
+	staticSlotCount   uint
+	staticVars        Slots
+	initStarted       bool
 }
 
 func newClass(cf *classfile.ClassFile) *Class {
@@ -59,35 +59,35 @@ func (self *Class) ConstantPool() *ConstantPool {
 }
 
 func (self *Class) IsPublic() bool {
-	return 0 != self.accessFlags & ACC_PUBLIC
+	return 0 != self.accessFlags&ACC_PUBLIC
 }
 
 func (self *Class) IsFinal() bool {
-	return 0 != self.accessFlags & ACC_FINAL
+	return 0 != self.accessFlags&ACC_FINAL
 }
 
 func (self *Class) IsSuper() bool {
-	return 0 != self.accessFlags & ACC_SUPER
+	return 0 != self.accessFlags&ACC_SUPER
 }
 
 func (self *Class) IsInterface() bool {
-	return 0 != self.accessFlags & ACC_INTERFACE
+	return 0 != self.accessFlags&ACC_INTERFACE
 }
 
 func (self *Class) IsAbstract() bool {
-	return 0 != self.accessFlags & ACC_ABSTRACT
+	return 0 != self.accessFlags&ACC_ABSTRACT
 }
 
 func (self *Class) IsSynthetic() bool {
-	return 0 != self.accessFlags & ACC_SYNTHETIC
+	return 0 != self.accessFlags&ACC_SYNTHETIC
 }
 
 func (self *Class) IsAnnotation() bool {
-	return 0 != self.accessFlags & ACC_ANNOTATION
+	return 0 != self.accessFlags&ACC_ANNOTATION
 }
 
 func (self *Class) IsEnum() bool {
-	return 0 != self.accessFlags & ACC_ENUM
+	return 0 != self.accessFlags&ACC_ENUM
 }
 
 func (self *Class) isAccessibleTo(class *Class) bool {
@@ -133,8 +133,8 @@ func (self *Class) ArrayClass() *Class {
 
 func newObject(class *Class) *Object {
 	return &Object{
-		class:  class,
-		data: newSlots(class.instanceSlotCount),
+		class: class,
+		data:  newSlots(class.instanceSlotCount),
 	}
 }
 
@@ -146,4 +146,15 @@ func (self *Class) isJlCloneable() bool {
 }
 func (self *Class) isJioSerializable() bool {
 	return self.name == "java/io/Serializable"
+}
+
+func (self *Class) getField(name string, descriptor string, isStatic bool) *Field {
+	for c := self; c != nil; c = c.superClass {
+		for _, field := range c.fields {
+			if field.IsStatic() == isStatic && field.name == name && field.descriptor == descriptor {
+				return field
+			}
+		}
+	}
+	return nil
 }
