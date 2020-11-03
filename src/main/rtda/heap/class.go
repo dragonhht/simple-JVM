@@ -1,7 +1,7 @@
 package heap
 
 import (
-	"main/classfile"
+	"github.com/kuangcp/simple-jvm/src/main/classfile"
 	"strings"
 )
 
@@ -110,7 +110,7 @@ func (self *Class) Name() string {
 }
 
 func (self *Class) GetMainMethod() *Method {
-	return self.getStaticMethod("main", "([Ljava/lang/String;)V")
+	return self.getStaticMethod("github.com/kuangcp/simple-jvm/src/main", "([Ljava/lang/String;)V")
 }
 
 func (self *Class) getStaticMethod(name string, descriptor string) *Method {

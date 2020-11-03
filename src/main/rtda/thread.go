@@ -1,6 +1,6 @@
 package rtda
 
-import "main/rtda/heap"
+import "github.com/kuangcp/simple-jvm/src/main/rtda/heap"
 
 type Thread struct {
 	pc int

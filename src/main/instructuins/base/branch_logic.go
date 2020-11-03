@@ -1,6 +1,6 @@
 package base
 
-import "main/rtda"
+import "github.com/kuangcp/simple-jvm/src/main/rtda"
 
 /*
 	跳转逻辑

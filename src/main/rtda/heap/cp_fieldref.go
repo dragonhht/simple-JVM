@@ -1,6 +1,6 @@
 package heap
 
-import "main/classfile"
+import "github.com/kuangcp/simple-jvm/src/main/classfile"
 
 type FieldRef struct {
 	MemberRef

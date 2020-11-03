@@ -2,8 +2,8 @@ package heap
 
 import (
 	"fmt"
-	"main/classfile"
-	"main/classpath"
+	"github.com/kuangcp/simple-jvm/src/main/classfile"
+	"github.com/kuangcp/simple-jvm/src/main/classpath"
 )
 
 type ClassLoader struct {

@@ -1,8 +1,8 @@
 package base
 
 import (
-	"main/rtda"
-	"main/rtda/heap"
+	"github.com/kuangcp/simple-jvm/src/main/rtda"
+	"github.com/kuangcp/simple-jvm/src/main/rtda/heap"
 )
 
 func InitClass(thread *rtda.Thread, class *heap.Class) {

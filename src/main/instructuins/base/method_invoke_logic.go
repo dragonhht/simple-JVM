@@ -2,8 +2,8 @@ package base
 
 import (
 	"fmt"
-	"main/rtda"
-	"main/rtda/heap"
+	"github.com/kuangcp/simple-jvm/src/main/rtda"
+	"github.com/kuangcp/simple-jvm/src/main/rtda/heap"
 )
 
 func InvokeMethod(invokeFrame *rtda.Frame, method *heap.Method) {

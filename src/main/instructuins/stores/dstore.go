@@ -1,8 +1,8 @@
 package stores
 
 import (
-	"main/instructuins/base"
-	"main/rtda"
+	"github.com/kuangcp/simple-jvm/src/main/instructuins/base"
+	"github.com/kuangcp/simple-jvm/src/main/rtda"
 )
 
 type DSTORE struct{ base.Index8Instruction }

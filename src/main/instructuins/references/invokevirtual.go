@@ -2,9 +2,9 @@ package references
 
 import (
 	"fmt"
-	"main/instructuins/base"
-	"main/rtda"
-	"main/rtda/heap"
+	"github.com/kuangcp/simple-jvm/src/main/instructuins/base"
+	"github.com/kuangcp/simple-jvm/src/main/rtda"
+	"github.com/kuangcp/simple-jvm/src/main/rtda/heap"
 )
 
 type INVOKE_VIRTUAL struct {
