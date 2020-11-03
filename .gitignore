@@ -2,4 +2,3 @@
 bin/
 *.iml
 src/test/**
-*.sum

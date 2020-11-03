@@ -1,11 +1,11 @@
 package extended
 
 import (
-	"github.com/kuangcp/simple-jvm/src/main/instructuins/base"
-	"github.com/kuangcp/simple-jvm/src/main/instructuins/loads"
-	"github.com/kuangcp/simple-jvm/src/main/instructuins/math"
-	"github.com/kuangcp/simple-jvm/src/main/instructuins/stores"
-	"github.com/kuangcp/simple-jvm/src/main/rtda"
+	"main/instructuins/base"
+	"main/instructuins/loads"
+	"main/instructuins/math"
+	"main/instructuins/stores"
+	"main/rtda"
 )
 
 /*

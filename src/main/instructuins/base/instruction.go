@@ -1,6 +1,6 @@
 package base
 
-import "github.com/kuangcp/simple-jvm/src/main/rtda"
+import "main/rtda"
 
 /*
 	解释器结构

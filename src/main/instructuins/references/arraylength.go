@@ -1,8 +1,8 @@
 package references
 
 import (
-	"github.com/kuangcp/simple-jvm/src/main/instructuins/base"
-	"github.com/kuangcp/simple-jvm/src/main/rtda"
+	"main/instructuins/base"
+	"main/rtda"
 )
 
 type ARRAY_LENGTH struct {

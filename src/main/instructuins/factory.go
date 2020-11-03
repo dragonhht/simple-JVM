@@ -2,17 +2,17 @@ package instructuins
 
 import (
 	"fmt"
-	"github.com/kuangcp/simple-jvm/src/main/instructuins/base"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/constants"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/comparisons"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/control"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/conversions"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/extended"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/loads"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/math"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/stack"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/stores"
-	. "github.com/kuangcp/simple-jvm/src/main/instructuins/references"
+	"main/instructuins/base"
+	. "main/instructuins/constants"
+	. "main/instructuins/comparisons"
+	. "main/instructuins/control"
+	. "main/instructuins/conversions"
+	. "main/instructuins/extended"
+	. "main/instructuins/loads"
+	. "main/instructuins/math"
+	. "main/instructuins/stack"
+	. "main/instructuins/stores"
+	. "main/instructuins/references"
 )
 
 var (

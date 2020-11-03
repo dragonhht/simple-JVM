@@ -1,7 +1,7 @@
 package rtda
 
 import (
-	"github.com/kuangcp/simple-jvm/src/main/rtda/heap"
+	"main/rtda/heap"
 	"math"
 )
 

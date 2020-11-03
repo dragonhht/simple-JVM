@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/kuangcp/simple-jvm/src/main/classfile"
-	"github.com/kuangcp/simple-jvm/src/main/classpath"
-	"github.com/kuangcp/simple-jvm/src/main/rtda/heap"
+	"main/classfile"
+	"main/classpath"
+	"main/rtda/heap"
 	"strings"
 )
 
@@ -38,7 +38,7 @@ func loadClass(className string, cp *classpath.Classpath) *classfile.ClassFile {
 func getMainMethod(cf *classfile.ClassFile) *classfile.MemberInfo {
 	for _, m := range cf.Methods() {
 		println(m.Descriptor())
-		if m.Name() == "github.com/kuangcp/simple-jvm/src/main" && m.Descriptor() == "([Ljava/lang/String;)V" {
+		if m.Name() == "main" && m.Descriptor() == "([Ljava/lang/String;)V" {
 			return m
 		}
 	}

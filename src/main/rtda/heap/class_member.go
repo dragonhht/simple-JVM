@@ -1,6 +1,6 @@
 package heap
 
-import "github.com/kuangcp/simple-jvm/src/main/classfile"
+import "main/classfile"
 
 type ClassMember struct {
 	accessFlags uint16

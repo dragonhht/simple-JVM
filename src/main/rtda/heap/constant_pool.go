@@ -2,7 +2,7 @@ package heap
 
 import (
 	"fmt"
-	"github.com/kuangcp/simple-jvm/src/main/classfile"
+	"main/classfile"
 )
 
 type Constant interface {
