@@ -9,7 +9,7 @@ import (
 	操作数栈
 */
 type OperandStack struct {
-	size  uint
+	size  uint16
 	slots []Slot
 }
 
@@ -89,6 +89,6 @@ func (self *OperandStack) PopSlot() Slot {
 	return self.slots[self.size]
 }
 
-func (self *OperandStack) GetRefFromTop(n uint) *heap.Object {
+func (self *OperandStack) GetRefFromTop(n uint16) *heap.Object {
 	return self.slots[self.size-1-n].ref
 }

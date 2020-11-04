@@ -13,6 +13,7 @@ import (
 	. "main/instructuins/references"
 	. "main/instructuins/stack"
 	. "main/instructuins/stores"
+	. "main/instructuins/reserved"
 )
 
 var (
@@ -163,7 +164,7 @@ var (
 	//athrow        = &ATHROW{}
 	//monitorenter  = &MONITOR_ENTER{}
 	//monitorexit   = &MONITOR_EXIT{}
-	//invoke_native = &INVOKE_NATIVE{}
+	invoke_native = &INVOKE_NATIVE{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -573,8 +574,8 @@ func NewInstruction(opcode byte) base.Instruction {
 	//case 0xc9:
 	//	return &JSR_W{}
 	//case 0xca: todo breakpoint
-	//case 0xfe:
-	//	return invoke_native
+	case 0xfe:
+		return invoke_native
 	//case 0xff:
 	//	return &BOOTSTRAP{}
 	default:
