@@ -13,21 +13,31 @@ type ClassLoader struct {
 }
 
 func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader {
-	return &ClassLoader{
+	loader := &ClassLoader{
 		cp:          cp,
 		verboseFlag: verboseFlag,
 		classMap:    make(map[string]*Class),
 	}
+	loader.loadBasicClasses()
+	loader.loadPrimitiveClasses()
+	return loader
 }
 
 func (self *ClassLoader) LoadClass(name string) *Class {
 	if class, ok := self.classMap[name]; ok {
 		return class
 	}
+	var class *Class
 	if name[0] == '[' {
-		return self.loadArrayClass(name)
+		class = self.loadArrayClass(name)
+	} else {
+		class = self.loadNonArray(name)
 	}
-	return self.loadNonArray(name)
+	if jlClassClass, ok := self.classMap["java/lang/Class"]; ok {
+		class.jClass = jlClassClass.NewObject()
+		class.jClass.extra = class
+	}
+	return class
 }
 
 func (self *ClassLoader) loadArrayClass(name string) *Class {
@@ -159,6 +169,37 @@ func (self *ClassLoader) defineClass(data []byte) *Class {
 	resolveInterfaces(class)
 	self.classMap[class.name] = class
 	return class
+}
+
+func (self *ClassLoader) loadBasicClasses() {
+	jlClassClass := self.LoadClass("java/lang/Class")
+	for _, class := range self.classMap {
+		if class.jClass == nil {
+			class.jClass = jlClassClass.NewObject()
+			class.jClass.extra = class
+		}
+	}
+}
+
+/*
+	加载void和基本类型的类
+ */
+func (self *ClassLoader) loadPrimitiveClasses() {
+	for primitiveType, _ := range primitiveTypes {
+		self.loadPrimitiveClass(primitiveType)
+	}
+}
+
+func (self *ClassLoader) loadPrimitiveClass(className string) {
+	class := &Class{
+		accessFlags:       ACC_PUBLIC,
+		name:              className,
+		loader:            self,
+		initStarted:       true,
+	}
+	class.jClass = self.classMap["java/lang/Class"].NewObject()
+	class.jClass.extra = class
+	self.classMap[className] = class
 }
 
 func resolveInterfaces(class *Class) {
