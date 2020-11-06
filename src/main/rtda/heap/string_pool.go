@@ -12,7 +12,11 @@ func JString(loader *ClassLoader, goStr string) *Object {
 	}
 
 	chars := stringToUtf16(goStr)
-	jChars := &Object{loader.LoadClass("[C"), chars}
+	jChars := &Object{
+		loader.LoadClass("[C"),
+		chars,
+		nil,
+	}
 
 	jStr := loader.LoadClass("java/lang/String").NewObject()
 	jStr.setRefVar("value", "[C", jChars)

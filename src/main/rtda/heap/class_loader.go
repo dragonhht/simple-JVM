@@ -183,7 +183,7 @@ func (self *ClassLoader) loadBasicClasses() {
 
 /*
 	加载void和基本类型的类
- */
+*/
 func (self *ClassLoader) loadPrimitiveClasses() {
 	for primitiveType, _ := range primitiveTypes {
 		self.loadPrimitiveClass(primitiveType)
@@ -192,10 +192,10 @@ func (self *ClassLoader) loadPrimitiveClasses() {
 
 func (self *ClassLoader) loadPrimitiveClass(className string) {
 	class := &Class{
-		accessFlags:       ACC_PUBLIC,
-		name:              className,
-		loader:            self,
-		initStarted:       true,
+		accessFlags: ACC_PUBLIC,
+		name:        className,
+		loader:      self,
+		initStarted: true,
 	}
 	class.jClass = self.classMap["java/lang/Class"].NewObject()
 	class.jClass.extra = class

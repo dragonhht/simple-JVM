@@ -20,7 +20,7 @@ type Class struct {
 	staticSlotCount   uint
 	staticVars        Slots
 	initStarted       bool
-	jClass *Object // java.lang.Class实例
+	jClass            *Object // java.lang.Class实例
 }
 
 func newClass(cf *classfile.ClassFile) *Class {

@@ -1,10 +1,5 @@
 package heap
 
-import (
-	"main/native"
-	"main/rtda"
-)
-
 /*
 	Object结构体
 */
@@ -44,18 +39,4 @@ func (self *Object) GetRefVar(name string, descriptor string) *Object {
 	field := self.class.getField(name, descriptor, false)
 	slots := self.data.(Slots)
 	return slots.GetRef(field.slotId)
-}
-
-func init() {
-	// 注册本地方法 getClass
-	native.Register("java/lang/Object", "getClass", "()Ljava/lang/Class;", getClass)
-}
-
-/*
-	实现本地方法 getClass
- */
-func getClass(frame *rtda.Frame) {
-	this := frame.LocalVars().GetThis()
-	class := this.Class().JClass()
-	frame.OperandStack().PushRef(class)
 }

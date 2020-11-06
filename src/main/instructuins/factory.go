@@ -11,9 +11,9 @@ import (
 	. "main/instructuins/loads"
 	. "main/instructuins/math"
 	. "main/instructuins/references"
+	. "main/instructuins/reserved"
 	. "main/instructuins/stack"
 	. "main/instructuins/stores"
-	. "main/instructuins/reserved"
 )
 
 var (
