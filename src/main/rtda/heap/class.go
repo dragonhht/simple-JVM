@@ -114,10 +114,6 @@ func (self *Class) Name() string {
 	return self.name
 }
 
-func (self *Class) GetMainMethod() *Method {
-	return self.getStaticMethod("main", "([Ljava/lang/String;)V")
-}
-
 func (self *Class) getStaticMethod(name string, descriptor string) *Method {
 	for _, m := range self.methods {
 		if m.IsStatic() && m.Name() == name && m.Descriptor() == descriptor {
@@ -125,10 +121,6 @@ func (self *Class) getStaticMethod(name string, descriptor string) *Method {
 		}
 	}
 	return nil
-}
-
-func (self *Class) GetClinitMethod() *Method {
-	return self.getStaticMethod("<clinit>", "()V")
 }
 
 func (self *Class) ArrayClass() *Class {
@@ -171,4 +163,38 @@ func (self *Class) JavaName() string {
 func (self *Class) IsPrimitive() bool {
 	_, ok := primitiveTypes[self.name]
 	return ok
+}
+
+func (self *Class) GetMainMethod() *Method {
+	return self.getMethod("main", "([Ljava/lang/String;)V", true)
+}
+func (self *Class) GetClinitMethod() *Method {
+	return self.getMethod("<clinit>", "()V", true)
+}
+
+func (self *Class) getMethod(name, descriptor string, isStatic bool) *Method {
+	for c := self; c != nil; c = c.superClass {
+		for _, method := range c.methods {
+			if method.IsStatic() == isStatic &&
+				method.name == name &&
+				method.descriptor == descriptor {
+
+				return method
+			}
+		}
+	}
+	return nil
+}
+
+func (self *Class) GetInstanceMethod(name, descriptor string) *Method {
+	return self.getMethod(name, descriptor, false)
+}
+
+func (self *Class) GetRefVar(fieldName, fieldDescriptor string) *Object {
+	field := self.getField(fieldName, fieldDescriptor, true)
+	return self.staticVars.GetRef(field.slotId)
+}
+func (self *Class) SetRefVar(fieldName, fieldDescriptor string, ref *Object) {
+	field := self.getField(fieldName, fieldDescriptor, true)
+	self.staticVars.SetRef(field.slotId, ref)
 }

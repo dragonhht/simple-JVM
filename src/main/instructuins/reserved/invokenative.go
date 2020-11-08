@@ -4,6 +4,7 @@ import (
 	"main/instructuins/base"
 	"main/native"
 	_ "main/native/java/lang"
+	_ "main/native/sun/misc"
 	"main/rtda"
 )
 
