@@ -143,3 +143,13 @@ func (self *ClassFile) Methods() []*MemberInfo {
 func (self *ClassFile) Fields() []*MemberInfo {
 	return self.fields
 }
+
+func (self *ClassFile) SourceFileAttribute() *SourceFileAttribute {
+	for _, attrInfo := range self.attributes {
+		switch attrInfo.(type) {
+		case *SourceFileAttribute:
+			return attrInfo.(*SourceFileAttribute)
+		}
+	}
+	return nil
+}
